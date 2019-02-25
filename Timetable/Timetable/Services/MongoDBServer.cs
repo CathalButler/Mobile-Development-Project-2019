@@ -6,59 +6,53 @@ using MongoDB.Driver;
 using System.Threading.Tasks;
 using MongoDB.Driver.Core;
 using System.Threading;
-using Timetable.Models;
+
+
 
 namespace Timetable
 {
 
     // Help links:
     // https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-windows/
+    // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
+    // https://blog.xamarin.com/introduction-to-data-binding/
     class MongoDBServer
     {
-
+        // Member Varaibles
+        private IMongoClient _mongoClient;
+        private IMongoDatabase _database;
+        private IMongoCollection<Module> _timetableElementsCollection;
         //Database Varaibles
         string databaseName = "timetable";
         string collectionName = "timetableEntry";
+        string connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";
 
-        //Elements collections
-        IMongoCollection<TimetableElement> timetableElementsCollection;
-        IMongoCollection<TimetableElement> TimetableElementsCollection
+        public MongoDBServer() // Constructor
         {
-            get
-            {
-                if (timetableElementsCollection == null)
-                {
-                    Console.WriteLine("TESTING START =============================:");
-                    //Variables
-                    var connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";
-                    var client = new MongoClient(connectionString);
+            // Connect to databata server with connection url:
+            _mongoClient = new MongoClient(connectionString);
+       
+            // Call will get the database or automatically create one if it dose not exist
+            // Returns an object which is a representation of a database
+            _database = _mongoClient.GetDatabase(databaseName);
 
-                    // Get function call will get the database or automatically create one if it dose not exist
-                    // Returns an object which is a representation of a database
-                    var db = client.GetDatabase(databaseName);
+            // Check if a collection exists, create it, and then add documents to a collection 
+            _timetableElementsCollection = _database.GetCollection<Module>(collectionName);
 
-                    // Check if a collection exists, create it, and then add documents to a collection
-                    timetableElementsCollection = db.GetCollection<TimetableElement>(collectionName);
-                    Console.WriteLine(collectionName);
-                    Console.WriteLine("END TESTING START =============================END");
-                }//End if
-                return timetableElementsCollection; //Return data to element collection
-            }//End get
-        }//End 
+        }//End constructor
 
-        //Fuctions for gettings all data for a timetable from the array list.
+        //Fuctions for gettings all data for a timetable from the list.
         //@Return all entrys for a timetable
-        public async Task<List<TimetableElement>> GetAllEntrys()
+        public async Task<List<Module>> GetAllEntrys()
         {
-            Console.WriteLine("TESTING START =============================:");
             try
-            { 
-                //Varaibles that will find all documents in the list "timetableElementsCollection":
-                var allEntrys = await timetableElementsCollection.Find(new BsonDocument()).ToListAsync();
+            {
+                //Varaibles that will find all elements in the list "timetableElementsCollection":
+                var allEntrys = await _timetableElementsCollection.Find(new BsonDocument()).ToListAsync();
                 //Return entrys
                 return allEntrys;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 //Display error message to consoles
                 System.Diagnostics.Debug.WriteLine(e.Message);
@@ -67,10 +61,10 @@ namespace Timetable
         }//End get all entrys funtion
 
         // Function thats creates a new timetable element:
-        public async Task CreateTimetableElement(TimetableElement entry)
+        public async Task CreateTimetableElement(Module entry)
         {
-            await TimetableElementsCollection.InsertOneAsync(entry);
+            await _timetableElementsCollection.InsertOneAsync(entry);
         }//End create function
 
     }// End class 
-}
+}// End namespace

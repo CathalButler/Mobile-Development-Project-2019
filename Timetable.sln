@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetable.iOS", "Timetable\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetable.UWP", "Timetable\Timetable.UWP\Timetable.UWP.csproj", "{51F79529-9B85-477A-837F-EBE9B3CC6783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timetable", "Timetable\Timetable\Timetable.csproj", "{D00A8502-FA1E-4047-AD0E-8449A7F980FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Timetable", "Timetable\Timetable\Timetable.csproj", "{D00A8502-FA1E-4047-AD0E-8449A7F980FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

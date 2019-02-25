@@ -11,7 +11,7 @@ namespace Timetable
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ListElementsPage();
         }
 
         protected override void OnStart()
