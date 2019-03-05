@@ -32,7 +32,7 @@ namespace Timetable
                 if (title != value)
                 {
                     title = value;
-                    OnPropertyChanged("Title");
+                    OnPropertyChanged();
                 }
             }
         }//End title get & set funtion
@@ -47,7 +47,7 @@ namespace Timetable
                 if (time != value)
                 {
                     time = value;
-                    OnPropertyChanged("Time");
+                    OnPropertyChanged();
                 }
             }
         }//End time get & set funtion
@@ -61,7 +61,7 @@ namespace Timetable
                 if (room != value)
                 {
                     room = value;
-                    OnPropertyChanged("Room");
+                    OnPropertyChanged();
                 }
             }
         }//End room get & set funtion
@@ -69,15 +69,11 @@ namespace Timetable
         /* These functions lets the applicaiton no that the propertrys have changed for the values above */
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        // Method to check is a property has been changed for the values above. Method allows callerMemberName 
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var changed = PropertyChanged;
-            if (changed != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }//End funtion
-
 
 
         protected void SetProperty<T>(ref T backingStore, T value, Action onChanged = null, [CallerMemberName] string propertyName = null)
