@@ -6,8 +6,7 @@ using MongoDB.Driver;
 using System.Threading.Tasks;
 using MongoDB.Driver.Core;
 using System.Threading;
-
-
+using Timetable.ViewModels;
 
 namespace Timetable
 {
@@ -21,10 +20,10 @@ namespace Timetable
         // Member Varaibles
         private IMongoClient _mongoClient;
         private IMongoDatabase _database;
-        private IMongoCollection<Module> _timetableElementsCollection;
+        private IMongoCollection<ModuleViewModel> _timetableElementsCollection;
         //Database Varaibles
         string databaseName = "timetable";
-        string collectionName = "timetableEntry";
+        string collectionName = "timetable_list";
         string connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";
 
         public MongoDBServer() // Constructor
@@ -37,13 +36,13 @@ namespace Timetable
             _database = _mongoClient.GetDatabase(databaseName);
 
             // Check if a collection exists, create it, and then add documents to a collection 
-            _timetableElementsCollection = _database.GetCollection<Module>(collectionName);
+            _timetableElementsCollection = _database.GetCollection<ModuleViewModel>(collectionName);
 
         }//End constructor
 
         //Fuctions for gettings all data for a timetable from the list.
         //@Return all entrys for a timetable
-        public async Task<List<Module>> GetAllEntrys()
+        public async Task<List<ModuleViewModel>> GetAllEntrys()
         {
             try
             {
@@ -60,10 +59,13 @@ namespace Timetable
             return null; //Return null
         }//End get all entrys funtion
 
+
         // Function thats creates a new timetable element:
-        public async Task CreateTimetableElement(Module entry)
+        public async Task CreateTimetableElement(ModuleViewModel entrys)
         {
-            await _timetableElementsCollection.InsertOneAsync(entry);
+            Console.WriteLine("Create object: " + entrys );
+            Console.ReadLine();
+            await _timetableElementsCollection.InsertOneAsync(entrys);
         }//End create function
 
     }// End class 

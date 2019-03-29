@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Timetable.Pages.CreatePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <TableView Intent="Form">
+            <TableRoot>
+                <TableSection Title="Title">
+                    <EntryCell Text="{Binding NewModule.Title}" />
+
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <!-- Start time setter -->
+                            <Label Text="Start" />
+                            <TimePicker Time="{Binding NewModule.StartTime}" x:Name="_startTimePicker"
+                            Format="T"/>
+                            <!-- End time setter-->
+                            <Label Text="Ends" />
+                            <TimePicker Time="{Binding NewModule.EndTime}"  x:Name="_endTimePicker"
+                            Format="T"/>
+
+                            <!-- Note input box -->
+                            <Label Text="Info:"/>
+                            <Editor Text="{Binding NewModule.Info}">
+
+                            </Editor>
+                        </StackLayout>
+
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

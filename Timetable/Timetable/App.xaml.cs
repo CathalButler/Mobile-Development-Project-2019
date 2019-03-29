@@ -28,8 +28,7 @@ namespace Timetable
 
             // Set main page to tabbed pages
             MainPage = tabbedNavigation;
-        }
-
+        } // End constuctor
 
         protected override void OnStart()
         {

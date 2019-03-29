@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Timetable.ViewModels;
 
 namespace Timetable
 {
@@ -13,79 +14,54 @@ namespace Timetable
      * Define a schema for module entrys to the database
      * Referance: https://blog.xamarin.com/introduction-to-data-binding/
      * https://www.codeproject.com/Articles/1023761/MVVM-and-BaseViewModel-foundations
+     * 
+     * Model is part of the domain, BaseViewModel is part of the presentation
      */
 
-    public class Module : INotifyPropertyChanged
+    public class Module
     {
-        //Varaibles
-        string title, time, room;
-
+        #region == Public Properties ==
         [BsonId] //id for the entry in the database
         public ObjectId ID { get; set; }
+
+        // Title
         [BsonElement("title")]
-        public string Title
+        public string Title { get; set; }
+
+        // Day of the week
+        [BsonElement("dayOfWeek")]
+        public string DayOfWeek { get; set; }
+
+        //Time
+        [BsonElement("start_time")]
+        public string StartTime { get; set; }
+
+        //Time
+        [BsonElement("end_time")]
+        public string EndTime { get; set; }
+
+        // Info
+        [BsonElement("info")]
+        public string Info { get; set; }
+
+        #endregion
+
+
+        #region  == Constructors ==
+        public Module() { }
+
+
+        public Module(ObjectId iD, string title, string dayOfWeek, string startTime, string endTime, string info)
         {
-            get
-            { return title; }
-            set
-            {
-                if (title != value)
-                {
-                    title = value;
-                    OnPropertyChanged();
-                }
-            }
-        }//End title get & set funtion
-
-        [BsonElement("time")]
-        public string Time
-        {
-            get
-            { return time; }
-            set
-            {
-                if (time != value)
-                {
-                    time = value;
-                    OnPropertyChanged();
-                }
-            }
-        }//End time get & set funtion
-
-        [BsonElement("room")]
-        public string Room
-        {
-            get { return room; }
-            set
-            {
-                if (room != value)
-                {
-                    room = value;
-                    OnPropertyChanged();
-                }
-            }
-        }//End room get & set funtion
-
-        /* These functions lets the applicaiton no that the propertrys have changed for the values above */
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // Method to check is a property has been changed for the values above. Method allows callerMemberName 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }//End funtion
-
-
-        protected void SetProperty<T>(ref T backingStore, T value, Action onChanged = null, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return;
-
-            backingStore = value;
-
-            onChanged?.Invoke();
-
-            OnPropertyChanged(propertyName);
+            ID = iD;
+            Title = title;
+            DayOfWeek = dayOfWeek;
+            StartTime = startTime;
+            EndTime = endTime;
+            Info = info;
         }
+
+        #endregion
+
     }//End class
 }
