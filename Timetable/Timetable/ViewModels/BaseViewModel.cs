@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Timetable.ViewModels
+namespace Timetable
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

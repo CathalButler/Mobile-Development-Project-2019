@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timetable.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Timetable.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    // [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePage : ContentPage
     {
         private CreateViewModel _viewModel;
@@ -31,4 +24,4 @@ namespace Timetable.Pages
             throw new NotImplementedException();
         }
     }// End class
-}// End Namespace
+}// End Namespace   

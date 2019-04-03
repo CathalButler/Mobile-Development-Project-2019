@@ -17,8 +17,11 @@
                 <TableSection Title="Title">
                     <EntryCell Text="{Binding NewModule.Title}" />
 
+                </TableSection>
+
+                <TableSection Title="Time">
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" Margin="15,5">
                             <!-- Start time setter -->
                             <Label Text="Start" />
                             <TimePicker Time="{Binding NewModule.StartTime}" x:Name="_startTimePicker"
@@ -27,15 +30,22 @@
                             <Label Text="Ends" />
                             <TimePicker Time="{Binding NewModule.EndTime}"  x:Name="_endTimePicker"
                             Format="T"/>
+                        </StackLayout>
 
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Info">
+                    <ViewCell>
+                        <StackLayout>
                             <!-- Note input box -->
                             <Label Text="Info:"/>
                             <Editor Text="{Binding NewModule.Info}">
 
                             </Editor>
                         </StackLayout>
-
                     </ViewCell>
+
                 </TableSection>
             </TableRoot>
         </TableView>

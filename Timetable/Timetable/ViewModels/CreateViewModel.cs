@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Timetable.ViewModels
+namespace Timetable
 {
 
     public class CreateViewModel : BaseViewModel
@@ -30,15 +29,10 @@ namespace Timetable.ViewModels
         // Function to make a save request to the mongo serive to then add it to the database
         public async Task ExecuteSaveCommand()
         {
-            Console.WriteLine("TESTING OUTPUT FOR MODULE OBJECT: " + NewModule);
-            Console.ReadLine();
             var monoService = new MongoDBServer();
 
-          //  await monoService.CreateTimetableElement(NewModule as ModuleViewModel);
-
-            SaveComplete?.Invoke(this, new EventArgs());
+            await monoService.CreateTimetableElement(NewModule);
         } // End SaveAsync method
-
 
     }// End class
 }// End namespace

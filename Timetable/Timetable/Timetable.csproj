@@ -10,9 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreshMvvm" Version="2.2.4" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
-    <PackageReference Include="Xamarin.Forms" Version="3.5.0.169047" />
+    <None Remove="Resources\add.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\add.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.8.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
   </ItemGroup>
 
   <ItemGroup>

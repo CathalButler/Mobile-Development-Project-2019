@@ -1,5 +1,4 @@
-﻿using FreshMvvm;
-using System;
+﻿using System;
 using Timetable.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

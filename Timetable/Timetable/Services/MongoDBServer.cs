@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Threading.Tasks;
-using MongoDB.Driver.Core;
-using System.Threading;
-using Timetable.ViewModels;
 
 namespace Timetable
 {
@@ -15,12 +11,12 @@ namespace Timetable
     // https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-windows/
     // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
     // https://blog.xamarin.com/introduction-to-data-binding/
-    class MongoDBServer
+    public class MongoDBServer
     {
         // Member Varaibles
         private IMongoClient _mongoClient;
         private IMongoDatabase _database;
-        private IMongoCollection<ModuleViewModel> _timetableElementsCollection;
+        private IMongoCollection<Module> _timetableElementsCollection;
         //Database Varaibles
         string databaseName = "timetable";
         string collectionName = "timetable_list";
@@ -36,13 +32,13 @@ namespace Timetable
             _database = _mongoClient.GetDatabase(databaseName);
 
             // Check if a collection exists, create it, and then add documents to a collection 
-            _timetableElementsCollection = _database.GetCollection<ModuleViewModel>(collectionName);
+            _timetableElementsCollection = _database.GetCollection<Module>(collectionName);
 
         }//End constructor
 
         //Fuctions for gettings all data for a timetable from the list.
         //@Return all entrys for a timetable
-        public async Task<List<ModuleViewModel>> GetAllEntrys()
+        public async Task<List<Module>> GetAllEntrys()
         {
             try
             {
@@ -61,10 +57,8 @@ namespace Timetable
 
 
         // Function thats creates a new timetable element:
-        public async Task CreateTimetableElement(ModuleViewModel entrys)
+        public async Task CreateTimetableElement(Module entrys)
         {
-            Console.WriteLine("Create object: " + entrys );
-            Console.ReadLine();
             await _timetableElementsCollection.InsertOneAsync(entrys);
         }//End create function
 

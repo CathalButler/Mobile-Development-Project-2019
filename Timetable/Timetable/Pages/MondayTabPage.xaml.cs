@@ -19,7 +19,10 @@ namespace Timetable.Pages
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreatePage(null));
+            var module = new Module();
+            var createPage = new CreatePage(module);
+
+            Navigation.PushAsync(new NavigationPage(createPage));
         }
     }
 }
