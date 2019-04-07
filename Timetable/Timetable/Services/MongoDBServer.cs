@@ -73,6 +73,11 @@ namespace Timetable
             return modules;
         }// End GetModelsByDay Function
 
+        public async Task DeleteModule(Module module)
+        {
+            await _timetableElementsCollection.DeleteOneAsync(m => m.ID.Equals(module.ID));
+        }// End delete function
+
 
     }// End class 
 }// End namespace

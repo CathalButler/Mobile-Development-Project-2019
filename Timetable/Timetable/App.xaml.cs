@@ -24,7 +24,6 @@ namespace Timetable
             tabbedNavigation.Children.Add(new NavigationPage(new ThursdayTabPage()) { Title = "Thursday" });
             tabbedNavigation.Children.Add(new NavigationPage(new FridayTabPage()) { Title = "Friday" });
 
-
             // Set main page to tabbed pages
             MainPage = tabbedNavigation;
         } // End constuctor
