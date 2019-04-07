@@ -24,12 +24,12 @@
                         <StackLayout Orientation="Vertical" Margin="15,5">
                             <!-- Start time setter -->
                             <Label Text="Start" />
-                            <TimePicker Time="{Binding NewModule.StartTime}" x:Name="_startTimePicker"
-                            Format="T"/>
+                            <TimePicker Time="{Binding NewModule.StartTime}" 
+                                        Format="T"/>
                             <!-- End time setter-->
                             <Label Text="Ends" />
-                            <TimePicker Time="{Binding NewModule.EndTime}"  x:Name="_endTimePicker"
-                            Format="T"/>
+                            <TimePicker Time="{Binding NewModule.EndTime}"  
+                                        Format="T"/>
                         </StackLayout>
 
                     </ViewCell>
@@ -37,7 +37,7 @@
 
                 <TableSection Title="Info">
                     <ViewCell>
-                        <StackLayout>
+                        <StackLayout Orientation="Vertical"  Margin="15,5">
                             <!-- Note input box -->
                             <Label Text="Info:"/>
                             <Editor Text="{Binding NewModule.Info}">
@@ -52,5 +52,6 @@
     </ContentPage.Content>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding SaveCommand}" />
+        <ToolbarItem Text="Cancel" Clicked="Handle_CancelClicked" />
     </ContentPage.ToolbarItems>
 </ContentPage>

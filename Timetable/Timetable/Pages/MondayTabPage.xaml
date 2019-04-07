@@ -5,14 +5,18 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
-          
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Modules}" x:Name="modules">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Detail="{Binding Info}">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
-    
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Add" Icon="add.png" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 </ContentPage>

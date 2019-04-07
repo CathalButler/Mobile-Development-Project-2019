@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Timetable.Pages
@@ -8,11 +10,11 @@ namespace Timetable.Pages
     {
         private CreateViewModel _viewModel;
 
-        public CreatePage(Module newModule)
+        public CreatePage(Module newModule, string dayOfWeek)
         {
             InitializeComponent();
 
-            _viewModel = new CreateViewModel(newModule);
+            _viewModel = new CreateViewModel(newModule, dayOfWeek);
             _viewModel.SaveComplete += _viewModel_SaveComplete;
 
             // Mapping source data, which is in CreateViewModel
@@ -23,5 +25,17 @@ namespace Timetable.Pages
         {
             throw new NotImplementedException();
         }
+
+        protected async void Handle_CancelClicked(object sender, EventArgs e)
+        {
+            await DismissPage();
+        }
+
+        async Task DismissPage()
+        {
+
+            await Navigation.PopAsync();
+        }
+
     }// End class
 }// End Namespace   

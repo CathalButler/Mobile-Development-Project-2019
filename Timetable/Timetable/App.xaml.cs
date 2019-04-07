@@ -16,8 +16,8 @@ namespace Timetable
         {
             InitializeComponent();
 
+            // Tabbled scoll for all pages for each day of the week
             var tabbedNavigation = new ScrollableTabbedPage();
-
             tabbedNavigation.Children.Add(new NavigationPage(new MondayTabPage()) { Title = "Monday" });
             tabbedNavigation.Children.Add(new NavigationPage(new TuesdayTabPage()) { Title = "Tuesday" });
             tabbedNavigation.Children.Add(new NavigationPage(new WednesdayTabPage()) { Title = "Wednesday" });

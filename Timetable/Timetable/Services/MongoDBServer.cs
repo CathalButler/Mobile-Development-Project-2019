@@ -11,6 +11,7 @@ namespace Timetable
     // https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-windows/
     // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
     // https://blog.xamarin.com/introduction-to-data-binding/
+    // https://www.codementor.io/pmbanugo/working-with-mongodb-in-net-1-basics-g4frivcvz
     public class MongoDBServer
     {
         // Member Varaibles
@@ -19,7 +20,7 @@ namespace Timetable
         private IMongoCollection<Module> _timetableElementsCollection;
         //Database Varaibles
         string databaseName = "timetable";
-        string collectionName = "timetable_list";
+        string collectionName = "timetable_entrys";
         string connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";
 
         public MongoDBServer() // Constructor
@@ -61,6 +62,17 @@ namespace Timetable
         {
             await _timetableElementsCollection.InsertOneAsync(entrys);
         }//End create function
+
+        // Function that will get all modules for what ever day page the user is on.
+        public async Task<List<Module>> GetModulesByDay(string dayOfWeek)
+        {
+            var modules = await _timetableElementsCollection
+                .Find(f => f.DayOfWeek.Equals(dayOfWeek)) 
+                .ToListAsync();
+
+            return modules;
+        }// End GetModelsByDay Function
+
 
     }// End class 
 }// End namespace
