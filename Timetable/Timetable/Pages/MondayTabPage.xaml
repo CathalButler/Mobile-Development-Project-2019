@@ -2,27 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Timetable.Pages.MondayTabPage"
-             Title="{Binding Title}"
+             Title="Monday"
              x:Name="Modules">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Modules}" x:Name="listOfModules">
+            <ListView ItemsSource="{Binding Modules}" x:Name="listOfModules" Margin="5, 5">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Title}" Detail="{Binding Info}">
+                        <TextCell Text="{Binding Title}" Detail="{Binding Info}" >
                             <TextCell.ContextActions>
                                 <MenuItem Text="Delete" IsDestructive="true"
                                           Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=Modules}}"
                                           CommandParameter="{Binding .}" />
                             </TextCell.ContextActions>
+
                         </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Add"  Icon="Assets/add.png" Order="Primary" Priority="0" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 </ContentPage>

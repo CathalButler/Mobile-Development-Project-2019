@@ -1,7 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace Timetable
 {
@@ -52,9 +54,9 @@ namespace Timetable
         }// End of dayOfweek function
 
         //Time
-        string _time;
+        TimeSpan _time = new TimeSpan();
         [BsonElement("start_time")]
-        public string StartTime
+        public TimeSpan StartTime
         {
             get => _time;
             set
@@ -69,9 +71,9 @@ namespace Timetable
         }//End time get & set funtion
 
         //Time
-        string _endTime;
+        TimeSpan _endTime = new TimeSpan();
         [BsonElement("end_time")]
-        public string EndTime
+        public TimeSpan EndTime
         {
             get => _endTime;
             set
