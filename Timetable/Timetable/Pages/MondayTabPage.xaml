@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Timetable.Pages.MondayTabPage"
              Title="{Binding Title}"
-              x:Name="mondayModules">
+             x:Name="Modules">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Modules}" x:Name="modules">
+            <ListView ItemsSource="{Binding Modules}" x:Name="listOfModules">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Title}" Detail="{Binding Info}">
                             <TextCell.ContextActions>
                                 <MenuItem Text="Delete" IsDestructive="true"
-                                          Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=mondayModules}}"
+                                          Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Name=Modules}}"
                                           CommandParameter="{Binding .}" />
                             </TextCell.ContextActions>
                         </TextCell>

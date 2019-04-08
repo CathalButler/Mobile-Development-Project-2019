@@ -21,8 +21,9 @@ namespace Timetable
 
         public ModuleViewModel()
         {
+            // Delcared instances of list
             Modules = new List<Module>();
-
+            // Delete Cammand used for removing a a element when a user presses on a modules listed.
             DeleteCommand = new Command<Module>(async (module) => await ExecuteDeleteCommandAsync(module));
 
         }// End Construtor
@@ -55,7 +56,6 @@ namespace Timetable
             var db = new MongoDBServer();
             // Pass module object to serive to remove it from the database by its ID.
             await db.DeleteModule(module);
-
             // Update the list after delete is complete:
             Modules = await db.GetModulesByDay(_dayOfWeek);
 
