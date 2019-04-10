@@ -29,7 +29,7 @@ namespace Timetable.Pages
                 // Set selected module from listview
                 var selectedModule = e.SelectedItem as Module;
                 // Navigate to create page to edit it.
-                Navigation.PushAsync(new CreatePage(selectedModule, "Monday"));
+                Navigation.PushAsync(new CreatePage(selectedModule, "Monday", false));
             };
 
 
@@ -39,7 +39,7 @@ namespace Timetable.Pages
         {
             var module = new Module();
 
-            Navigation.PushAsync(new CreatePage(module, "Monday"));
+            Navigation.PushAsync(new CreatePage(module, "Monday", true));
         }
 
         // Function to fetch all data when the page appears.

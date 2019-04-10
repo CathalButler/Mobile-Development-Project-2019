@@ -63,6 +63,12 @@ namespace Timetable
             await _timetableElementsCollection.InsertOneAsync(entrys);
         }//End create function
 
+        // Funtion that will update a module entry that is already in the database.
+        public async Task UpdateModule(Module module)
+        {
+            await _timetableElementsCollection.ReplaceOneAsync(m => m.ID.Equals(module.ID), module);
+        }// End update funtion
+
         // Function that will get all modules for what ever day page the user is on.
         public async Task<List<Module>> GetModulesByDay(string dayOfWeek)
         {

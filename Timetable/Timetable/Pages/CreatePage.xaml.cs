@@ -12,12 +12,12 @@ namespace Timetable.Pages
         // View Module
         private CreateViewModel _viewModel;
 
-        public CreatePage(Module newModule, string dayOfWeek)
+        public CreatePage(Module newModule, string dayOfWeek, bool existingModule)
         {
             InitializeComponent();
              
-            _viewModel = new CreateViewModel(newModule, dayOfWeek);
-            _viewModel.SaveComplete += Handle_SaveCompleteAsync;
+            _viewModel = new CreateViewModel(newModule, dayOfWeek, existingModule);
+            _viewModel.SaveComplete += Handle_SaveComplete;
 
             // Mapping source data, which is in CreateViewModel
             BindingContext = _viewModel;
@@ -27,10 +27,10 @@ namespace Timetable.Pages
         {
             base.OnDisappearing();
 
-            _viewModel.SaveComplete -= Handle_SaveCompleteAsync;
+            _viewModel.SaveComplete -= Handle_SaveComplete;
         }
 
-        private void Handle_SaveCompleteAsync(object sender, EventArgs e)
+        private void Handle_SaveComplete(object sender, EventArgs e)
         {
             Navigation.PopAsync();
         }
@@ -38,11 +38,6 @@ namespace Timetable.Pages
         protected void Handle_CancelClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
-        }
-
-        async Task DismissPage()
-        {
-            await Navigation.PopAsync();
         }
 
     }// End class
