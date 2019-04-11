@@ -79,6 +79,7 @@ namespace Timetable
             return modules;
         }// End GetModelsByDay Function
 
+        // Function that will remove a module from the database by its ID.
         public async Task DeleteModule(Module module)
         {
             await _timetableElementsCollection.DeleteOneAsync(m => m.ID.Equals(module.ID));
