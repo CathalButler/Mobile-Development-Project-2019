@@ -7,25 +7,29 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="MyTemplate">
-                <ViewCell >
-                    <Frame BorderColor="Black" Padding="3" Margin="5, 5" HeightRequest="240">
+            <DataTemplate x:Key="ModuleListTemplate">
+                <ViewCell>
+                    <Frame BorderColor="#FF4081" Margin="5, 5">
                         <!-- Title -->
                         <StackLayout Margin="2">
-                            <Label Text="{Binding Title}" />
-                            <!-- Start Time -->
-                            <StackLayout Orientation="Horizontal" Margin="2, 1" >
-                                <Label Text="Info: " />
-                                <Label Text="{Binding Info}"/>
+                            <StackLayout Orientation="Horizontal" Margin="2, 1">
+                                <Label Text="{Binding Title}" />
                             </StackLayout>
-                             <StackLayout Orientation="Horizontal" Margin="2, 1"  >
+                            <!-- Start Time -->
+                            <StackLayout Orientation="Horizontal" Margin="2, 1">
                                 <Label Text="Start:"/>
-                                <Label Text="{Binding StartTime, StringFormat='{}{0:h\\:mm}'}"/>
-                                <Label Text="End:" Margin="5,0,1,0"/>
-                                <Label Text="{Binding EndTime, StringFormat='{}{0:h\\:mm}'}"/>
+                                <Label Text="{Binding StartTime, StringFormat=\{0:h\\:mm\}}"/>
                             </StackLayout>
                             <!-- End Time -->
+                            <StackLayout Orientation="Horizontal" Margin="2, 1">
+                                <Label Text="End:"/>
+                                <Label Text="{Binding EndTime, StringFormat=\{0:h\\:mm\}}"/>
+                            </StackLayout>
                             <!-- Module info -->
+                            <StackLayout Orientation="Horizontal" Margin="2, 1">
+                                <Label Text="Info:"/>
+                                <Label Text="{Binding Info}"/>
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                     <!-- Delete action -->
@@ -37,18 +41,15 @@
                     </ViewCell.ContextActions>
                 </ViewCell>
             </DataTemplate>
-
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <StackLayout VerticalOptions="StartAndExpand"  >
             <!-- List View that dispays the contents of the list of modules -->
-            <ListView 
+            <ListView  HasUnevenRows="True"
                 ItemsSource="{Binding Modules}" 
-                x:Name="listOfModules" Margin="5, 5" ItemTemplate="{StaticResource MyTemplate }" />
-
-
+                x:Name="listOfModules" Margin="5, 5" ItemTemplate="{StaticResource ModuleListTemplate }" />
         </StackLayout>
     </ContentPage.Content>
     <!-- Toolbar Items - Add a new module button -->
