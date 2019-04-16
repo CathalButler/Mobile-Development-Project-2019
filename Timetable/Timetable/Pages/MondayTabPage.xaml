@@ -54,6 +54,6 @@
     </ContentPage.Content>
     <!-- Toolbar Items - Add a new module button -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"  Icon="Assets/add.png" Order="Primary" Priority="0" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Order="Primary" Text="Add" Icon="Assets/add.png"  Priority="0" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
 </ContentPage>

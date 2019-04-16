@@ -4,7 +4,7 @@
              x:Class="Timetable.Pages.WednesdayTabPage"
              Title="Wednesday"
              x:Name="Modules">
-
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ModuleListTemplate">
@@ -48,7 +48,7 @@
             <!-- List View that dispays the contents of the list of modules -->
             <ListView  HasUnevenRows="True"
                 ItemsSource="{Binding Modules}" 
-                x:Name="listOfModules" Margin="5, 5" ItemTemplate="{StaticResource ModuleListTemplate }" />
+                x:Name="listOfModules" Margin="5, 5" ItemTemplate="{StaticResource ModuleListTemplate}" />
         </StackLayout>
     </ContentPage.Content>
     <!-- Toolbar Items - Add a new module button -->
