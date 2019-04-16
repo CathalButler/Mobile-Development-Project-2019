@@ -7,6 +7,8 @@ namespace Timetable.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TuesdayTabPage : ContentPage
 	{
+        // Variables
+        // View Model
         ModuleViewModel _viewModel;
         private string dayOfWeek = "Tuesday";
 
@@ -31,7 +33,8 @@ namespace Timetable.Pages
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             var module = new Module();
-
+            // Navigate to create page passing Module instances to populate the object as 
+            // well as the day of the week and 'true' that the module is a new entry.
             Navigation.PushAsync(new CreatePage(module, dayOfWeek, true));
         }
 

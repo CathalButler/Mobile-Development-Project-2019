@@ -19,21 +19,21 @@ namespace Timetable
         private IMongoDatabase _database;
         private IMongoCollection<Module> _timetableElementsCollection;
         //Database Varaibles
-        string databaseName = "timetable";
-        string collectionName = "timetable_entrys";
-        string connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";
+        private string _databaseName = "timetable";
+        private string _collectionName = "timetable_entrys";
+        private string _connectionString = "mongodb://admin:admin2019@ds119795.mlab.com:19795/timetable";  
 
         public MongoDBServer() // Constructor
         {
             // Connect to databata server with connection url:
-            _mongoClient = new MongoClient(connectionString);
+            _mongoClient = new MongoClient(_connectionString);
        
             // Call will get the database or automatically create one if it dose not exist
             // Returns an object which is a representation of a database
-            _database = _mongoClient.GetDatabase(databaseName);
+            _database = _mongoClient.GetDatabase(_databaseName);
 
             // Check if a collection exists, create it, and then add documents to a collection 
-            _timetableElementsCollection = _database.GetCollection<Module>(collectionName);
+            _timetableElementsCollection = _database.GetCollection<Module>(_collectionName);
 
         }//End constructor
 
